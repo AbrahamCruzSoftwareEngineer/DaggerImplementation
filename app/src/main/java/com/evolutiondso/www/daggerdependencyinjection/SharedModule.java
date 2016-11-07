@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import javax.inject.Named;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -20,12 +22,23 @@ public class SharedModule {
     }
 
     @Provides
-    public SharedPreferences provideShared(){
-        return PreferenceManager.getDefaultSharedPreferences(context);
+    @Named("Will")
+    public SharedPreferences provideSharedWill(){
+    //    return PreferenceManager.getDefaultSharedPreferences(context);
+        return context.getSharedPreferences("WILL", Context.MODE_PRIVATE);
     }
 
+
     @Provides
-    public SharedPreferences.Editor provideEditor(SharedPreferences sharedPreferences){
+    @Named("Raul")
+    public SharedPreferences provideSharedRaul(){
+        //    return PreferenceManager.getDefaultSharedPreferences(context);
+        return context.getSharedPreferences("RAUL", Context.MODE_PRIVATE);
+    }
+
+
+    @Provides
+    public SharedPreferences.Editor provideEditor(@Named("Raul") SharedPreferences sharedPreferences){
         return sharedPreferences.edit();
     }
 

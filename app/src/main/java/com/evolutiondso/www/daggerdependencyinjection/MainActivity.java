@@ -7,19 +7,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import javax.inject.Inject;
+import javax.inject.Named;
+import javax.inject.Provider;
 
 public class MainActivity extends AppCompatActivity {
 
     @Inject
-    SharedPreferences sharedPreferences;
+    @Named("Will")
+    SharedPreferences sharedPreferences2;
+
     @Inject
-    SharedPreferences.Editor editor;
+    @Named("Raul")
+    SharedPreferences sharedPreferences;
+
+
+    @Inject
+    Provider<SharedPreferences.Editor>editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//you have to compile the projecto so you dont get an error when you create your injection component
+//you have to compile the project so you dont get an error when you create your injection component
         Daggercomponent
                 .builder()
                 .sharedModule(new SharedModule(this))
