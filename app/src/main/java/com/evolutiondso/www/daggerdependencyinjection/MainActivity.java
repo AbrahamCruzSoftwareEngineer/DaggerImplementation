@@ -6,9 +6,16 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import java.io.IOException;
+
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Provider;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
                 .sharedModule(new SharedModule(this))
                 .build()
                 .inject(this);
+
+
+        for (int i=0; i<10; i++){
+            SharedPreferences.Editor aux = editor.get();
+            System.out.println(aux);
+        }
     }
 
 
